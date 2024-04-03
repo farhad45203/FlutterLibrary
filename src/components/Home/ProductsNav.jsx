@@ -1,6 +1,10 @@
 import React from "react";
 
-export default function ProductsNav({ selectedNav, setSelectedNav }) {
+export default function ProductsNav({
+  selectedNav,
+  setSelectedNav,
+  classNames,
+}) {
   const navList = [
     {
       id: 1,
@@ -51,9 +55,8 @@ export default function ProductsNav({ selectedNav, setSelectedNav }) {
       name: "Fitness",
     },
   ];
-
   return (
-    <div className="flex gap-x-2">
+    <div className={`flex gap-x-2 overflow-auto ${classNames}`}>
       {navList.map((nav, index) => (
         <a
           key={index}

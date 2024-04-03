@@ -52,10 +52,10 @@ export default function Footer() {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="xl:grid xl:grid-cols-4 xl:gap-8">
-        <div className="space-y-[16px] col-span-3">
+      <div className="xl:grid xl:grid-cols-4 xl:gap-8 gap-4">
+        <div className="space-y-[16px] col-span-3 sm:mb-0 md:mb-4 mb-4">
           <Image src={Logo} alt="Your Company" />
-          <p className="text-sm w-1/2 leading-6 text-gray-600">
+          <p className="text-sm sm:w-1/2 leading-6 text-gray-600">
             Beautifully designed, expertly crafted Flutter components and
             templates, to jumpstart your projects and speed up your development
             process.
@@ -75,7 +75,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div className="md:grid md:grid-cols-2 md:gap-8">
+        <div className="md:grid md:grid-cols-2 md:gap-4">
           <div>
             <h3 className="text-sm font-semibold leading-6 text-gray-900">
               Explore
@@ -93,7 +93,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <div className="mt-10 md:mt-0">
+          <div className="sm:mt-10 mt-4 md:mt-0">
             <h3 className="text-sm font-semibold leading-6 text-gray-900">
               Support
             </h3>
@@ -112,7 +112,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="mt-16 flex justify-between border-t border-gray-900/10 pt-4 sm:mt-20 lg:mt-5">
+      <div className="mt-16 flex flex-wrap gap-4 justify-between border-t border-gray-900/10 pt-4 sm:mt-20 lg:mt-5">
         <p className="text-xs leading-5 text-gray-500">
           Copyright 2024 TheFlutterLibrary. All rights reserved.
         </p>

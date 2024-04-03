@@ -1,21 +1,26 @@
-/*
-  This HomeLayout requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { Fragment, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { Cog6ToothIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import { Dialog, Menu, Transition } from "@headlessui/react";
+import {
+  Bars3Icon,
+  BellIcon,
+  CalendarIcon,
+  ChartPieIcon,
+  Cog6ToothIcon,
+  DocumentDuplicateIcon,
+  FolderIcon,
+  HomeIcon,
+  UsersIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/20/solid";
+
+const userNavigation = [
+  { name: "Your profile", href: "#" },
+  { name: "Sign out", href: "#" },
+];
 
 import Logo from "../../images/logo.png";
 import Image from "next/image";
@@ -32,34 +37,34 @@ import sponsor from "../../images/sponsor.png";
 import hire from "../../images/hire.png";
 import sun from "../../images/sun.png";
 
+const navigation = [
+  { name: "Discover", href: "#", icon: discover, current: true },
+  { name: "UI Kits", href: "#", icon: uikits, current: false },
+  { name: "Screens", href: "#", icon: screens, current: false },
+  { name: "Articles", href: "#", icon: articles, current: false },
+  {
+    name: "Become Sponsor",
+    href: "#",
+    icon: sponsor,
+    current: false,
+  },
+  { name: "Hire Flutter Dev", href: "#", icon: hire, current: false },
+];
+const teams = [
+  { id: 1, name: "Sign in", href: "#", initial: 10, current: false },
+  { id: 2, name: "Chat", href: "#", initial: 5, current: false },
+  { id: 3, name: "Onboarding", href: "#", initial: 18, current: false },
+  { id: 1, name: "E-commerce", href: "#", initial: 9, current: false },
+  { id: 2, name: "Checkout", href: "#", initial: 10, current: false },
+  { id: 3, name: "Error", href: "#", initial: 16, current: false },
+];
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
 export default function HomeLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const navigation = [
-    { name: "Discover", href: "#", icon: discover, current: true },
-    { name: "UI Kits", href: "#", icon: uikits, current: false },
-    { name: "Screens", href: "#", icon: screens, current: false },
-    { name: "Articles", href: "#", icon: articles, current: false },
-    {
-      name: "Become Sponsor",
-      href: "#",
-      icon: sponsor,
-      current: false,
-    },
-    { name: "Hire Flutter Dev", href: "#", icon: hire, current: false },
-  ];
-  const teams = [
-    { id: 1, name: "Sign in", href: "#", initial: 10, current: false },
-    { id: 2, name: "Chat", href: "#", initial: 5, current: false },
-    { id: 3, name: "Onboarding", href: "#", initial: 18, current: false },
-    { id: 1, name: "E-commerce", href: "#", initial: 9, current: false },
-    { id: 2, name: "Checkout", href: "#", initial: 10, current: false },
-    { id: 3, name: "Error", href: "#", initial: 16, current: false },
-  ];
-
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
 
   return (
     <>
@@ -125,11 +130,11 @@ export default function HomeLayout() {
                     </div>
                   </Transition.Child>
                   {/* Sidebar component, swap this element with another sidebar if you like */}
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
-                    <div className="flex h-16 shrink-0 items-center">
-                      <Image src={Logo} alt="Your Company" />
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white pb-4">
+                    <div className="flex h-16 pl-6 shrink-0 items-center">
+                      <Image href="#" src={Logo} alt="Your Company" />
                     </div>
-                    <nav className="flex flex-1 flex-col">
+                    <nav className="flex flex-1 flex-col overflow-x-hidden">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
                           <ul role="list" className="-mx-2 space-y-1">
@@ -139,49 +144,43 @@ export default function HomeLayout() {
                                   href={item.href}
                                   className={classNames(
                                     item.current
-                                      ? "bg-gray-50 text-indigo-600"
-                                      : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
-                                    "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                      ? "bg-[#F0F0F0] text-gray-900"
+                                      : "text-[#989898] hover:text-gray-900 hover:bg-[#F0F0F0]",
+                                    "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold pl-6"
                                   )}
                                 >
-                                  <item.icon
-                                    className={classNames(
-                                      item.current
-                                        ? "text-indigo-600"
-                                        : "text-gray-400 group-hover:text-indigo-600",
-                                      "h-6 w-6 shrink-0"
-                                    )}
-                                    aria-hidden="true"
-                                  />
-                                  {item.name}
+                                  <div className="flex items-center gap-2">
+                                    <Image src={item.icon} alt={item.name} />
+                                    {item.name}
+                                  </div>
                                 </a>
                               </li>
                             ))}
                           </ul>
                         </li>
-                        <li>
-                          <div className="text-xs font-semibold leading-6 text-gray-400">
+                        <li className="px-6">
+                          <div className="text-sm leading-5 text-gray-900">
                             All Screens
                           </div>
-                          <ul role="list" className="-mx-2 mt-2 space-y-1">
+                          <ul role="list" className="mt-2 space-y-1">
                             {teams.map((team) => (
                               <li key={team.name}>
                                 <a
                                   href={team.href}
                                   className={classNames(
                                     team.current
-                                      ? "bg-gray-50 text-indigo-600"
-                                      : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
-                                    "group flex justify-between gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                      ? "bg-[#F0F0F0] text-gray-900"
+                                      : "text-[#989898] hover:text-gray-900 hover:bg-[#F0F0F0]",
+                                    "group flex gap-x-3 justify-between rounded-md p-2 text-sm leading-5"
                                   )}
                                 >
                                   <span className="truncate">{team.name}</span>
                                   <span
                                     className={classNames(
                                       team.current
-                                        ? "text-indigo-600 border-indigo-600"
-                                        : "text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600",
-                                      "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white"
+                                        ? "text-gray-900"
+                                        : "text-[#989898] group-hover:text-gray-900",
+                                      "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-sm"
                                     )}
                                   >
                                     {team.initial}
@@ -190,18 +189,6 @@ export default function HomeLayout() {
                               </li>
                             ))}
                           </ul>
-                        </li>
-                        <li className="mt-auto">
-                          <a
-                            href="#"
-                            className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
-                          >
-                            <Cog6ToothIcon
-                              className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                              aria-hidden="true"
-                            />
-                            Settings
-                          </a>
                         </li>
                       </ul>
                     </nav>
@@ -215,11 +202,11 @@ export default function HomeLayout() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white pr-6 pb-4">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white pb-4">
             <div className="flex h-16 pl-6 shrink-0 items-center">
               <Image src={Logo} alt="Your Company" />
             </div>
-            <nav className="flex flex-1 flex-col">
+            <nav className="flex flex-1 flex-col overflow-x-hidden">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
@@ -243,7 +230,7 @@ export default function HomeLayout() {
                     ))}
                   </ul>
                 </li>
-                <li className="pl-6">
+                <li className="px-6">
                   <div className="text-sm leading-5 text-gray-900">
                     All Screens
                   </div>
@@ -281,6 +268,21 @@ export default function HomeLayout() {
         </div>
 
         <div className="lg:pl-72">
+          <div className="items-center justify-end py-2 px-4 gap-x-4 lg:gap-x-4 sm:hidden flex">
+            <button
+              type="button"
+              className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
+            >
+              <span className="sr-only">View notifications</span>
+              <Image src={sun} alt="sun" />
+            </button>
+            <button className="px-4 py-[14px] rounded-[20px] capitalize text-black hover:bg-gray-900 hover:text-white sm:block border">
+              Log in
+            </button>
+            <button className="px-4 py-[14px] rounded-[20px] capitalize text-white bg-gray-900 border">
+              Get Pro
+            </button>
+          </div>
           <div className="sticky top-0 z-40 flex shrink-0 items-center gap-x-4 bg-white px-4 sm:gap-x-6 sm:px-6 lg:px-8">
             <button
               type="button"
@@ -288,8 +290,7 @@ export default function HomeLayout() {
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
-              {/* <Bars3Icon className="h-6 w-6" aria-hidden="true" /> */}
-              <Image src={sun} alt="sun" />
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
 
             {/* Separator */}
@@ -304,7 +305,7 @@ export default function HomeLayout() {
                 action="#"
                 method="GET"
               >
-                <div className="flex w-1/2 items-center max-h-12">
+                <div className="flex sm:w-1/2 w-full items-center max-h-12">
                   <label htmlFor="search-field" className="sr-only">
                     Search
                   </label>
@@ -321,7 +322,7 @@ export default function HomeLayout() {
                   />
                 </div>
               </form>
-              <div className="flex items-center gap-x-4 lg:gap-x-4">
+              <div className="items-center gap-x-4 lg:gap-x-4 sm:flex hidden">
                 <button
                   type="button"
                   className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"

@@ -70,8 +70,8 @@ export default function HomeSreens() {
         </a>
       </div>
 
-      <div className="flex items-center gap-4">
-        <div className="flex flex-1 items-center gap-4">
+      <div className="flex relative items-center overflow-hidden">
+        <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F5]">
             <div>
               <Image src={filter} alt="filter" />
@@ -80,12 +80,13 @@ export default function HomeSreens() {
           </div>
           <span className="inline-block h-4 w-px bg-gray-400"></span>
           <ProductsNav
+            classNames="flex-1 flex-wrap gap-2"
             selectedNav={selectedNav}
             setSelectedNav={handleNavChange}
           />
-        </div>
-        <div>
-          <Image src={arrowRight} alt="arrow" />
+          <div className="">
+            <Image src={arrowRight} alt="arrow" />
+          </div>
         </div>
       </div>
 

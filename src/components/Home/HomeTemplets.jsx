@@ -73,15 +73,15 @@ export default function HomeTemplate() {
                   {template.content}
                 </a>
               </h3>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap justify-end items-center gap-x-2 gap-y-1">
                 <div className="flex items-center gap-2">
-                  <div className="w-auto h-auto">
+                  <div>
                     <Image src={phone} alt="phone" />
                   </div>
                   <p>{template.phone}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-auto h-auto">
+                  <div>
                     <Image src={download} alt="download" />
                   </div>
                   <p>{template.download}</p>
