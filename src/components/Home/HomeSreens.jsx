@@ -58,6 +58,20 @@ export default function HomeSreens() {
     setCurrentPage(1);
   };
 
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  const handleScroll = (scrollOffset) => {
+    const container = document.getElementById("scrollContainer");
+    if (container) {
+      const newScrollLeft = scrollLeft + scrollOffset;
+      container.scrollTo({
+        left: newScrollLeft,
+        behavior: "smooth",
+      });
+      setScrollLeft(newScrollLeft);
+    }
+  };
+
   return (
     <div className="bg-white grid gap-4">
       <div className="sm:flex sm:items-baseline sm:justify-between">
@@ -71,7 +85,7 @@ export default function HomeSreens() {
       </div>
 
       <div className="flex relative items-center overflow-hidden">
-        <div className="flex items-center gap-4">
+        <div className="flex w-full overflow-hidden items-center gap-4">
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F5]">
             <div>
               <Image src={filter} alt="filter" />
@@ -79,14 +93,20 @@ export default function HomeSreens() {
             <a className="capitalize text-gray-900">Filters</a>
           </div>
           <span className="inline-block h-4 w-px bg-gray-400"></span>
+          {scrollLeft > 0 ? (
+            <a onClick={() => handleScroll(-500)} className="rotate-180">
+              <Image src={arrowRight} alt="arrow" />
+            </a>
+          ) : null}
           <ProductsNav
-            classNames="flex-1 flex-wrap gap-2"
+            classNames="flex-1 scrollbar-hide w-1/2 overflow-x-auto gap-2"
+            id="scrollContainer"
             selectedNav={selectedNav}
             setSelectedNav={handleNavChange}
           />
-          <div className="">
+          <a onClick={() => handleScroll(500)} className="">
             <Image src={arrowRight} alt="arrow" />
-          </div>
+          </a>
         </div>
       </div>
 

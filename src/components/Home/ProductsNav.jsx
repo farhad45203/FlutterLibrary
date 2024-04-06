@@ -4,6 +4,7 @@ export default function ProductsNav({
   selectedNav,
   setSelectedNav,
   classNames,
+  id,
 }) {
   const navList = [
     {
@@ -56,9 +57,10 @@ export default function ProductsNav({
     },
   ];
   return (
-    <div className={`flex gap-x-2 overflow-auto ${classNames}`}>
+    <div className={`inline-flex gap-x-2 ${classNames}`} id={id}>
       {navList.map((nav, index) => (
-        <a
+        <button
+          id="btn"
           key={index}
           className={
             selectedNav === `${nav.name}`
@@ -68,7 +70,7 @@ export default function ProductsNav({
           onClick={() => setSelectedNav(`${nav.name}`)}
         >
           {nav.name}
-        </a>
+        </button>
       ))}
     </div>
   );
