@@ -1,26 +1,7 @@
 import { Fragment, useState } from "react";
-import { Dialog, Menu, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  BellIcon,
-  CalendarIcon,
-  ChartPieIcon,
-  Cog6ToothIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
-
-const userNavigation = [
-  { name: "Your profile", href: "#" },
-  { name: "Sign out", href: "#" },
-];
+import { Dialog, Transition } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 import Logo from "../../images/logo.png";
 import Image from "next/image";
@@ -134,7 +115,7 @@ export default function HomeLayout() {
                     <div className="flex h-16 pl-6 shrink-0 items-center">
                       <Image href="#" src={Logo} alt="Your Company" />
                     </div>
-                    <nav className="flex flex-1 flex-col overflow-x-hidden">
+                    <nav className="flex flex-1 flex-col overflow-x-hidden scrollbar-hide">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
                           <ul role="list" className="-mx-2 space-y-1">
@@ -206,7 +187,7 @@ export default function HomeLayout() {
             <div className="flex h-16 pl-6 shrink-0 items-center">
               <Image src={Logo} alt="Your Company" />
             </div>
-            <nav className="flex flex-1 flex-col overflow-x-hidden">
+            <nav className="flex flex-1 flex-col overflow-x-hidden scrollbar-hide">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
